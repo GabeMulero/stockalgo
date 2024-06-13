@@ -1,15 +1,22 @@
 import streamlit as st
 import pandas as pd
-from tradingview_screener import Scanner
-
-# Display balloons animation
-st.balloons()
+from tradingview_screener import Query, Column
 
 # Display markdown title
 st.markdown("# Stock Screener")
 
 # Get the number of rows and data from the Scanner
-n_rows, data = Scanner.premarket_gainers.get_scanner_data()
+n_rows, data = (Query()
+ .select('name', 'close', 'volume', 'relative_volume_10d_calc')
+ .where(
+     Column('market_cap_basic').between(1_000_000, 50_000_000),
+     Column('relative_volume_10d_calc') > 1.2,
+     Column('MACD.macd') >= Column('MACD.signal')
+ )
+ .order_by('volume', ascending=False)
+ .offset(5)
+ .limit(25)
+ .get_scanner_data())
 
 # Convert the data to a DataFrame
 df = pd.DataFrame(data)
@@ -28,5 +35,5 @@ df["Issue"] = pd.Series([True, True, True, False] * (len(df) // 4) + [True] * (l
 st.write(df)
 
 
-print("good to go :) ")
+
 
