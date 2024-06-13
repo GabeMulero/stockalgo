@@ -11,7 +11,7 @@ try:
     n_rows, data = (Query()
         .select('name', 'close', 'volume', 'relative_volume_10d_calc', 'average_volume')
         .where(
-            Column('market_cap_basic').between(1_000_000, 50_000_000),
+            Column('market_cap_basic').between(200_000_000, 10_000_000_000),
             Column('relative_volume_10d_calc') > 1.2,
             Column('MACD.macd') >= Column('MACD.signal')
         )
