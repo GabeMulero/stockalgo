@@ -27,3 +27,6 @@ df["Issue"] = pd.Series([True, True, True, False] * (len(df) // 4) + [True] * (l
 # Display the DataFrame in Streamlit
 st.write(df)
 
+
+print("good to go :) ")
+
