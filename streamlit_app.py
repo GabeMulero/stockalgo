@@ -16,7 +16,6 @@ n_rows, data = (Query()
  .order_by('volume', ascending=False)
  .offset(5)
  .limit(25)
- .set_markets('America')
  .get_scanner_data())
 
 # Convert the data to a DataFrame
