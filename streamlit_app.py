@@ -9,7 +9,7 @@ st.markdown("# Stock Screener")
 try:
     # Get the number of rows and data from the Scanner
     n_rows, data = (Query()
-        .select('name', 'close', 'volume', 'pre-market_volume', 'relative_volume_10d_calc', 'average_volume')
+        .select('name', 'close', 'volume', 'relative_volume_10d_calc', 'average_volume')
         .where(
             Column('market_cap_basic').between(1_000_000, 50_000_000),
             Column('relative_volume_10d_calc') > 1.2,
