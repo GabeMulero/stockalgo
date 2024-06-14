@@ -9,7 +9,7 @@ st.markdown("# Stock Screener")
 try:
     # Get the number of rows and data from the Scanner
     n_rows, data = (Query()
-        .select('exchange','name', 'close', 'volume', 'average_volume','relative_volume_10d_calc', 'Volatility.D', 'change')
+        .select('exchange','name', 'change', 'close', 'volume', 'average_volume','relative_volume_10d_calc', 'Volatility.D')
         .where(
             Column('market_cap_basic').between(200_000_000, 10_000_000_000),
             Column('relative_volume_10d_calc') > 1.2,
@@ -18,7 +18,6 @@ try:
         )
         .order_by('volume', ascending=False)
         .offset(5)
-        .limit(25)
         .get_scanner_data())
 
     # Convert the data to a DataFrame
