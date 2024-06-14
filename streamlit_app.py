@@ -33,7 +33,7 @@ try:
     df = df[df['exchange'] != 'OTC']        
 
     # Add a new column 'Issue' with the correct length
-    df["Issue"] = pd.Series([True, True, True, False] * (len(df) // 4) + [True] * (len(df) % 4))
+    #df["Issue"] = pd.Series([True, True, True, False] * (len(df) // 4) + [True] * (len(df) % 4))
 
     # Display the DataFrame in Streamlit
     st.write(df)
